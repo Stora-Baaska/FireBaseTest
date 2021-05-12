@@ -32,7 +32,7 @@ export default function Home({Allblogs}) {
           return(
             <div className="card" style={{width:"30%", marginRight:"20px", elevation:"20px", marginBottom:'50px'}} key={blog.createdAt}>
             <div className="card-image">
-              <img src={blog.imageUrl} style={{height:'60vh', objectFit:'cover'}} />
+              <img src={blog.imageUrl} style={{height:'55vh', objectFit:'cover'}} />
               <span className="card-title">{blog.title}</span>
             </div>
             <div className="card-content">
@@ -47,7 +47,7 @@ export default function Home({Allblogs}) {
 
         {end==false?
         <button className="btn #5e35b1 deep-purple darken-1" style={{position:'fixed', bottom:'0'}} onClick={()=>loadMore()}>Load more</button>
-         :<h3>You have reached end</h3>
+         :<h3 style={{fontSize:"1rem"}}>You have reached end</h3>
         }
         
 

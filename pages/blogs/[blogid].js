@@ -34,7 +34,7 @@ export default function blogpage({blog,user,allComments}) {
             </div>
             <button className="btn #5e35b1 deep-purple darken-1" onClick={()=>makeCommet()}>Make comment</button>
             </>
-            :<h3>please login to make comments</h3>
+            :<h3 style={{fontSize:'1rem'}}>please login to make comments</h3>
             }
             
             <hr />

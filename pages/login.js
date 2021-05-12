@@ -1,7 +1,10 @@
 import {useState} from 'react'
 import Link from 'next/link'
 import {auth} from '../firebase'
+import {useRouter} from 'next/router'
+
 export default function login() {
+  const router = useRouter()
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
 
@@ -9,7 +12,8 @@ export default function login() {
         e.preventDefault()
         try{
           const result = await auth.signInWithEmailAndPassword(email,password)
-          M.toast({html: `welcome ${result.user.displayName}`,classes:"green"})  
+          M.toast({html: `welcome ${result.user.displayName}`,classes:"green"})
+          router.push('/')
         }catch(err){
           M.toast({html: err.message,classes:"red"})    
         }
