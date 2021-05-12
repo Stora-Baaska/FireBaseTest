@@ -24,9 +24,13 @@ export default function Signup() {
             <h3>Sign up</h3>
              <form onSubmit={(e)=>handleSubmit(e)}>
                  <div className="input-field">
-                     <input type="text" placeholder="type your name" value={name} onChange={(e)=>setName(e.target.value)} />
-                     <input type="email" placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
-                     <input type="password" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                     <input type="text" style={{width:"30%"}} className="inputfield" placeholder="type your name" value={name} onChange={(e)=>setName(e.target.value)} />
+                 </div>
+                 <div className="input-field">
+                     <input type="email" style={{width:"30%"}} placeholder="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                 </div>
+                 <div className="input-field">
+                     <input type="password" style={{width:"30%"}} placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                  </div>
                  <button type="submit" className="btn #5e35b1 deep-purple darken-1">Signup</button>
                 <Link href="/login"><a><h5>Already have an account ?</h5></a></Link>

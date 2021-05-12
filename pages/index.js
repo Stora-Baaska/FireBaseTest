@@ -26,26 +26,27 @@ export default function Home({Allblogs}) {
      }
    }
   return (
-    <div className="center">
+    <div className="center" style={{display:'flex', justifyContent:'center', flexWrap:'wrap'}}>
+
         {blogs.map(blog=>{
           return(
-            <div className="card" key={blog.createdAt}>
+            <div className="card" style={{width:"30%", marginRight:"20px", elevation:"20px", marginBottom:'50px'}} key={blog.createdAt}>
             <div className="card-image">
-              <img src={blog.imageUrl} />
+              <img src={blog.imageUrl} style={{height:'60vh', objectFit:'cover'}} />
               <span className="card-title">{blog.title}</span>
             </div>
             <div className="card-content">
               <p>{blog.body}</p>
             </div>
             <div className="card-action">
-              <Link href={`/blogs/${blog.id}`}><a>Read More</a></Link>
+              <Link href={`/blogs/${blog.id}`}><a style={{color:'blueviolet'}}>Read More</a></Link>
             </div>
           </div>
           )
         })}
 
         {end==false?
-        <button className="btn #5e35b1 deep-purple darken-1" onClick={()=>loadMore()}>Load more</button>
+        <button className="btn #5e35b1 deep-purple darken-1" style={{position:'fixed', bottom:'0'}} onClick={()=>loadMore()}>Load more</button>
          :<h3>You have reached end</h3>
         }
         
@@ -64,7 +65,9 @@ export default function Home({Allblogs}) {
             }
            `}
         </style>
+
     </div>
+
   )
 }
 
