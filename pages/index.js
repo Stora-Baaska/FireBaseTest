@@ -32,7 +32,7 @@ export default function Home({Allblogs}) {
           return(
             <div className="card" style={{width:"30%", marginRight:"20px", elevation:"20px", marginBottom:'50px'}} key={blog.createdAt}>
             <div className="card-image">
-              <img src={blog.imageUrl} style={{height:'55vh', objectFit:'cover'}} />
+              <img src={blog.imageUrl} style={{height:'55vh', objectFit:'cover', maxHeight:'55vh'}} />
               <span className="card-title">{blog.title}</span>
             </div>
             <div className="card-content">
