@@ -26,11 +26,11 @@ export default function Home({Allblogs}) {
      }
    }
   return (
-    <div className="center" style={{display:'flex', justifyContent:'center', flexWrap:'wrap'}}>
+    <div className="center" >
 
         {blogs.map(blog=>{
           return(
-            <div className="card" style={{width:"30%", marginRight:"20px", elevation:"20px", marginBottom:'50px'}} key={blog.createdAt}>
+            <div className="card" key={blog.createdAt}>
             <div className="card-image">
               <img src={blog.imageUrl} style={{height:'55vh', objectFit:'cover', maxHeight:'55vh'}} />
               <span className="card-title">{blog.title}</span>
