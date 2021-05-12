@@ -5,7 +5,7 @@ import {storage,db,serverTimestamp} from '../firebase'
 import { EditorState, convertToRaw } from 'draft-js';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 
-const Editor = dynamic(() => import('react-draft-wysiwyg').then(mod=>mod.Editor))
+const Editor = dynamic(() => import('react-draft-wysiwyg').then(mod=>mod.Editor),{ssr: false})
 
 
 export default function createblog({user}) {
