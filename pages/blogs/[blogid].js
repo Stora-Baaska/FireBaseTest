@@ -7,7 +7,7 @@ export default function blogpage({blog,user,allComments}) {
      const [allCommentsBlog,setAllComments] = useState(allComments)
      const router = useRouter()
      const { blogid } = router.query
-     const makeCommet = async ()=>{
+     const makeComment = async ()=>{
        
         await db.collection('blogs').doc(blogid).collection('comments').add({
              text:myComment,
@@ -19,10 +19,8 @@ export default function blogpage({blog,user,allComments}) {
      }
     return (
         <div className="container center">
-            <h2>{blog.title}</h2>
-            <h5>Created On - {new Date(blog.createdAt).toDateString()}</h5>
-            <img src={blog.imageUrl} alt={blog.title} />
-            <p>{blog.body}</p>
+            <div dangerouslySetInnerHTML={{__html: blog.body}}>
+            </div>
 
             {user?
             <>
@@ -32,7 +30,7 @@ export default function blogpage({blog,user,allComments}) {
                 value={myComment} 
                 onChange={(e)=>setMyComment(e.target.value)}/>
             </div>
-            <button className="btn #5e35b1 deep-purple darken-1" onClick={()=>makeCommet()}>Make comment</button>
+            <button className="btn #5e35b1 deep-purple darken-1" onClick={()=>makeComment()}>Make comment</button>
             </>
             :<h3 style={{fontSize:'1rem'}}>please login to make comments</h3>
             }

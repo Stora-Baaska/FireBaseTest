@@ -26,18 +26,13 @@ export default function Home({Allblogs}) {
      }
    }
   return (
-    <div className="center" >
+    <div className="center" style={{display:'flex', flexWrap:'wrap'}} >
 
         {blogs.map(blog=>{
           return(
             <div className="card" key={blog.createdAt}>
-            <div className="card-image">
-              <img src={blog.imageUrl} style={{height:'55vh', objectFit:'cover', maxHeight:'55vh'}} />
-              <span className="card-title">{blog.title}</span>
-            </div>
-            <div className="card-content">
-              <p>{blog.body}</p>
-            </div>
+            <div dangerouslySetInnerHTML={{__html: blog.body}}>
+              </div>
             <div className="card-action">
               <Link href={`/blogs/${blog.id}`}><a style={{color:'blueviolet'}}>Read More</a></Link>
             </div>
@@ -46,7 +41,7 @@ export default function Home({Allblogs}) {
         })}
 
         {end==false?
-        <button className="btn #5e35b1 deep-purple darken-1" style={{position:'fixed', bottom:'0'}} onClick={()=>loadMore()}>Load more</button>
+        <button className="btn #5e35b1 deep-purple darken-1" style={{position:'fixed', bottom:'0', left:'50%'}} onClick={()=>loadMore()}>Load more</button>
          :<h3 style={{fontSize:"1rem"}}>You have reached end</h3>
         }
         
@@ -56,6 +51,7 @@ export default function Home({Allblogs}) {
             .card{
               max-width:500px;
               margin:22px auto;
+              min-width:30%;
             }
             p{
               display: -webkit-box;
