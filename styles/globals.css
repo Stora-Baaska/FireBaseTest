@@ -20,3 +20,58 @@ a {
   border-bottom: 2px solid blueviolet !important;
   box-shadow: none !important;
 }
+.carousel.carousel-slider {
+  height:600px;
+}
+.carousel .slider-wrapper {
+  border-radius: 6px;
+  height:600px;
+}
+.carousel-root{
+  height:700px;
+}
+.container.center{
+  /* background-image: url("https://image.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg"); */
+  width:100vw;
+  height:95vh;
+  object-fit: fit;
+  max-width: none;
+}
+.formCard{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.04);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+.carousel.carousel-slider.control-arrow{
+  color:black
+}
+#profile-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+#imageUpload
+{
+    display: none;
+}
+
+#profileImage
+{
+    cursor: pointer;
+}
+#profile-container img {
+    width: 150px;
+    height: 150px;
+}

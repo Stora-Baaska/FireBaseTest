@@ -8,7 +8,7 @@ export default function NavBar({ user }) {
       <div className="py-4 flex-shrink-0 flex items-center">
         <ul id="nav-mobile" className="left">
           <li>
-            <img src="/logo.png" alt="" height="64px" style={{ objectFit: 'cover' }} />
+            <img src="/logo.png" alt="" height="64px" style={{ objectFit: 'cover', width: '64px' }} />
           </li>
           <li>
             <Link href="/">
@@ -26,8 +26,8 @@ export default function NavBar({ user }) {
             </>
             :
             <>
-              <li><Link href="/signup"><a>Create Blog</a></Link></li>
-              <li><Link href="/login"><a>Login</a></Link></li>
+              <li><Link href="/signup"><a style={{ color: 'black' }}>Signup</a></Link></li>
+              <li><Link href="/login"><a style={{ color: 'black' }}>Login</a></Link></li>
             </>
           }
         </ul>
