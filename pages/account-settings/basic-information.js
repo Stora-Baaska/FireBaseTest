@@ -18,7 +18,7 @@ import Build from '@material-ui/icons/Build'
 
 const useStyles = makeStyles(styles)
 
-export default function Home () {
+export default function BasicInfo () {
   const [url, setUrl] = React.useState('')
   const user = firebase.auth().currentUser
   const classes = useStyles()
@@ -88,41 +88,39 @@ export default function Home () {
                   tabName: 'Profile',
                   tabIcon: Face,
                   tabContent: (
-                    // user.photoURL !== null
-                    //   ? (
-                    //     <div>
-                    //       <div>
-                    //         <img src={user.profpic} alt='...' className={imageClasses} />
-                    //       </div>
-                    //       <h3 className={classes.textCenter}>
-                    //         {user.displayName}
-                    //       </h3>
-                    //       <h5 className={classes.textCenter}>
-                    //         {user.email}
-                    //       </h5>
-                    //     </div>
-                    //     )
-                    //   : <div>
-                    //     <div className={classes.textCenter} id='profile-container'>
-                    //       <label className='custom-file-upload fas'>
-                    //         <ImgUpload onChange={(file) => uploadImage(file)} src={url} />
-                    //       </label>
-                    //     </div>
-                    //     <input type='file' name='profile_photo' id='imageUpload' placeholder='Photo' capture onChange={(e) => uploadImage(e.target.files[0])} />
-                    //     <h3 className={classes.textCenter}>
-                    //       {user.displayName}
-                    //     </h3>
-                    //     <h5 className={classes.textCenter}>
-                    //       {user.email}
-                    //     </h5>
-                    //     {user.emailVerified === false
-                    //       ? <h5 className={classes.textCenter}> Имэйл хаяг аа баталгаажуулна уу</h5>
-                    //       : <h5 className={classes.textCenter}> Имэйл Баталгаажсан </h5>}
-                    //     <button className='btn #5e35b1 deep-purple darken-1' onClick={() => SubmitDetails()}> Apply </button>
-                    //   </div>
-                    <p className={classes.textCenter}>
-                      Settings
-                    </p>
+                  // user.photoURL !== null
+                  //   ? (
+                  //     <div>
+                  //       <div>
+                  //         <img src={user.profpic} alt='...' className={imageClasses} />
+                  //       </div>
+                  //       <h3 className={classes.textCenter}>
+                  //         {user.displayName}
+                  //       </h3>
+                  //       <h5 className={classes.textCenter}>
+                  //         {user.email}
+                  //       </h5>
+                  //     </div>
+                  //     )
+                  //   : <div>
+                  //     <div className={classes.textCenter} id='profile-container'>
+                  //       <label className='custom-file-upload fas'>
+                  //         <ImgUpload onChange={(file) => uploadImage(file)} src={url} />
+                  //       </label>
+                  //     </div>
+                  //     <input type='file' name='profile_photo' id='imageUpload' placeholder='Photo' capture onChange={(e) => uploadImage(e.target.files[0])} />
+                  //     <h3 className={classes.textCenter}>
+                  //       {user.displayName}
+                  //     </h3>
+                  //     <h5 className={classes.textCenter}>
+                  //       {user.email}
+                  //     </h5>
+                  //     {user.emailVerified === false
+                  //       ? <h5 className={classes.textCenter}> Имэйл хаяг аа баталгаажуулна уу</h5>
+                  //       : <h5 className={classes.textCenter}> Имэйл Баталгаажсан </h5>}
+                  //     <button className='btn #5e35b1 deep-purple darken-1' onClick={() => SubmitDetails()}> Apply </button>
+                  //   </div>
+                    <divw />
                   )
                 },
                 {
