@@ -11,11 +11,11 @@ const Editor = dynamic(() => import('react-draft-wysiwyg').then(mod => mod.Edito
 
 export default function createblog({ user }) {
     const [context, setContext] = useState(EditorState.createEmpty())
-    const [images, setImages] = useState([])
+    const [cover, setCover] = useState()
     const [title, setTitle] = useState('')
-    const [url, setUrl] = useState('')
 
     const uploadImage = (file) => {
+        let res
         var uploadTask = storage.ref().child(`image/${uuidv4()}`).put(file)
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -26,15 +26,13 @@ export default function createblog({ user }) {
                 M.toast({ html: error.message, classes: "red" })
             },
             () => {
-
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     console.log('File available at', downloadURL);
-                    setUrl(downloadURL)
-
+                    setCover(downloadURL)
                 });
             }
         );
-
+        return res
     }
 
     const SubmitDetails = () => {
@@ -43,7 +41,7 @@ export default function createblog({ user }) {
             db.collection('blogs').add({
                 title,
                 body,
-                imageUrl: url,
+                imageUrl: cover,
                 postedBy: user.uid,
                 createdAt: serverTimestamp()
             })
@@ -56,21 +54,31 @@ export default function createblog({ user }) {
 
     }
 
-    const uploadImageCallback = (file) => {
-      let uploadedImages = images;
-      uploadedImages.push(imageObject);
-
-      setImages(uploadedImages)
-      const imageObject = {
-        file: file,
-        localSrc: URL.createObjectURL(file),
-      }
+    const uploadImageCallback = async (file) => {
       return new Promise(
         (resolve, reject) => {
-          resolve({ data: { link: imageObject.localSrc } });
+          var uploadTask = storage.ref().child(`image/${uuidv4()}`).put(file)
+          uploadTask.on('state_changed',
+            (snapshot) => {
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                if (progress == '100') M.toast({ html: 'Image Uploaded', classes: "green" })
+            },
+            (error) => {
+                reject(error)
+            },
+            () => {
+              console.log('complete')
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    resolve({data: {link: downloadURL}});
+                });
+            }
+          );
+          
         }
       );
     }
+
     return (
         <div className="input-field rootdiv">
             <input
@@ -102,7 +110,7 @@ export default function createblog({ user }) {
                         image: { uploadEnabled: true, uploadCallback: uploadImageCallback, previewImage: true, alt: { present: true, mandatory: false } }
                     }} />
             </div>
-            <button style={{ marginTop: '1rem'}} className="btn #5e35b1 deep-purple darken-1" onClick={() => SubmitDetails()}>Submit Post</button>
+            <button style={{ marginTop: '1rem'}} className="btn #5e35b1 deep-purple darken-1" onClick={SubmitDetails}>Submit Post</button>
             <style jsx>
                 {`
                  
