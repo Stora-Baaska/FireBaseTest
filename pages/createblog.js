@@ -10,7 +10,8 @@ import router from 'next/router'
 const Editor = dynamic(() => import('react-draft-wysiwyg').then(mod => mod.Editor), { ssr: false })
 
 export default function createblog({ user }) {
-    const [context, setContext] = useState(() => EditorState.createEmpty())
+    const [context, setContext] = useState(EditorState.createEmpty())
+    const [images, setImages] = useState([])
     const [title, setTitle] = useState('')
     const [url, setUrl] = useState('')
 
@@ -54,6 +55,22 @@ export default function createblog({ user }) {
         }
 
     }
+
+    const uploadImageCallback = (file) => {
+      let uploadedImages = images;
+      uploadedImages.push(imageObject);
+
+      setImages(uploadedImages)
+      const imageObject = {
+        file: file,
+        localSrc: URL.createObjectURL(file),
+      }
+      return new Promise(
+        (resolve, reject) => {
+          resolve({ data: { link: imageObject.localSrc } });
+        }
+      );
+    }
     return (
         <div className="input-field rootdiv">
             <input
@@ -82,10 +99,10 @@ export default function createblog({ user }) {
                         textAlign: { inDropdown: true },
                         link: { inDropdown: true },
                         history: { inDropdown: true },
+                        image: { uploadEnabled: true, uploadCallback: uploadImageCallback, previewImage: true, alt: { present: true, mandatory: false } }
                     }} />
             </div>
-            <button className="btn #5e35b1 deep-purple darken-1" onClick={() => SubmitDetails()}>Submit Post</button>
-
+            <button style={{ marginTop: '1rem'}} className="btn #5e35b1 deep-purple darken-1" onClick={() => SubmitDetails()}>Submit Post</button>
             <style jsx>
                 {`
                  
