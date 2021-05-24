@@ -1,34 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
 
 const styles = {
   grid: {
-    marginRight: "-15px",
-    marginLeft: "-15px",
-    width: "auto",
-  },
-};
+    marginRight: '-15px',
+    marginLeft: '-15px',
+    width: 'auto'
+  }
+}
 
-const useStyles = makeStyles(styles);
+const useStyles = makeStyles(styles)
 
-export default function GridContainer(props) {
-  const classes = useStyles();
-  const { children, className, ...rest } = props;
+export default function GridContainer (props) {
+  const classes = useStyles()
+  const { children, className, ...rest } = props
   return (
-    <Grid container {...rest} className={classes.grid + " " + className}>
+    <Grid container {...rest} className={classes.grid + ' ' + className}>
       {children}
     </Grid>
-  );
+  )
 }
 
 GridContainer.defaultProps = {
-  className: "",
-};
+  className: ''
+}
 
 GridContainer.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-};
+  className: PropTypes.string
+}

@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { storage, db, serverTimestamp } from '../firebase'
 import { EditorState, convertToRaw } from 'draft-js'
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import draftToHtml from 'draftjs-to-html'
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid'
 import router from 'next/router'
 
 const Editor = dynamic(() => import('react-draft-wysiwyg').then(mod => mod.Editor), { ssr: false })
@@ -52,6 +52,21 @@ export default function createblog({ user }) {
             M.toast({ html: 'error creating blog', classes: "red" })
         }
 
+  const SubmitDetails = () => {
+    const body = draftToHtml(convertToRaw(context.getCurrentContent()))
+    try {
+      db.collection('blogs').add({
+        title,
+        body,
+        imageUrl: url,
+        postedBy: user.uid,
+        createdAt: serverTimestamp()
+      })
+      M.toast({ html: 'Blog Created', classes: 'green' })
+      router.push('/')
+    } catch (err) {
+      console.log(err)
+      M.toast({ html: 'error creating blog', classes: 'red' })
     }
 
     const uploadImageCallback = async (file) => {
@@ -121,8 +136,8 @@ export default function createblog({ user }) {
                      text-align:center;
                  }
                  `}
-            </style>
+      </style>
 
-        </div>
-    )
+    </div>
+  )
 }

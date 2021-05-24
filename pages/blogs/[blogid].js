@@ -1,7 +1,16 @@
 import { useState } from 'react'
 import { db } from '../../firebase'
 import { useRouter } from 'next/router'
+import classNames from 'classnames'
+
+import { makeStyles } from '@material-ui/core/styles'
+
+const styles = import('../../css/colorStyle')
+
+const useStyles = makeStyles(styles)
+
 export default function blogpage({ blog, user, allComments }) {
+    const classes = useStyles()
 
     const [myComment, setMyComment] = useState('')
     const [allCommentsBlog, setAllComments] = useState(allComments)
@@ -18,33 +27,39 @@ export default function blogpage({ blog, user, allComments }) {
 
     }
     return (
-        <div className="container center">
-            <div dangerouslySetInnerHTML={{ __html: blog.body }}>
-            </div>
+        <div className="container center" style={{ paddingTop: '50px', width: '95vw' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                <div style={{ width: '70vw' }}>
+                    <h4 style={{ width: '70vw' }}>{blog.title}</h4>
+                    <img src={blog.imageUrl} style={{ width: '70vw', height: 'auto ', objectFit: 'fill', paddingTop: '40px', paddingBottom: '30px' }}></img>
 
-            {user ?
-                <>
-                    <div className="input-field">
-                        <input type="text"
-                            placeholder="add a comment"
-                            value={myComment}
-                            onChange={(e) => setMyComment(e.target.value)} />
+                    <div style={{ width: '70vw' }} dangerouslySetInnerHTML={{ __html: blog.body }}>
                     </div>
-                    <button className="btn #5e35b1 deep-purple darken-1" onClick={() => makeComment()}>Make comment</button>
-                </>
-                : <h3 style={{ fontSize: '1rem' }}>please login to make comments</h3>
-            }
 
-            <hr />
-            <div className="left-align">
+                    {user ?
+                        <>
+                            <div className="input-field" style={{ display: 'flex', justifyContent: 'center' }}>
+                                <input type="text"
+                                    style={{ width: '70vw' }}
+                                    placeholder="add a comment"
+                                    value={myComment}
+                                    onChange={(e) => setMyComment(e.target.value)} />
+                            </div>
+                            <button className="btn #5e35b1 deep-purple darken-1" style={{ marginBottom: '50px' }} onClick={() => makeComment()}>Make comment</button>
+                        </>
+                        : <h3 style={{ fontSize: '1rem' }}>please login to make comments</h3>
+                    }
 
-                {allCommentsBlog.map(item => {
-                    return <h6 key={item.name}><span>{item.name}</span> {item.text}</h6>
-                })}
-            </div>
+                    <hr />
+                    <div className="left-align" style={{ paddingBottom: '50px' }}>
 
-            <style jsx global>
-                {`
+                        {allCommentsBlog.map(item => {
+                            return <h6 key={item.name}><span>{item.name}</span> {item.text}</h6>
+                        })}
+                    </div>
+
+                    <style jsx global>
+                        {`
                 span{
                     font-weight:500;
                 }
@@ -56,8 +71,10 @@ export default function blogpage({ blog, user, allComments }) {
                     max-width:500px;
                 }
                 `}
-            </style>
+                    </style>
+                </div>
 
+            </div>
         </div>
     )
 }
